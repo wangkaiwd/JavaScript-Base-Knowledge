@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组.push（在数组的最末尾添加元素）
+        // 数组.pop() 在数组的最末尾删除一个元素
+        var arr = [1,2,3];
+        console.log(arr.push("abc")); // 4
+        console.log(arr); // [1,2,3,"abc"]
+
+        console.log(arr.pop()); // "abc"
+        console.log(arr);  // 原数组改变
+
+        console.log("==============================================");
+        // 会改变原数组
+        // 数组.unshift() 在数组的最前面添加元素
+        // 数组.shift() 删除数组的最前面一项
+        var arr2 = [1,2,3];
+        console.log(arr2.unshift("abc"));// 返回数组的长度:4
+        console.log(arr2.shift()); // 返回被删除的元素："abc"
+        console.log(arr2);
+        
+    </script>
+</body>
+</html>

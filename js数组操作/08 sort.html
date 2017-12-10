@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // sort() // 数组中元素排序（默认：从小到大）
+        // 如果是字符：按照首个字符的Unicode编码排序
+
+        var arr = [4, 5, 1, 3, 2, 7, 6];
+        var aaa = arr.sort();
+        console.log(arr); // [1,2,3,4,5,6,7]
+
+        var arr1 = ["c", "e", "d", "a", "b"];
+        arr1.sort();
+        console.log(arr1); // ["a","b","c","d","e"]
+
+        console.log("============================");
+        // 借助回调函数传参进行排序
+        var arr2 = [4, 5, 1, 13, 2, 7, 6];
+        arr2.sort(function (a, b) {
+            return a - b; // 升幂排序
+        });
+        arr2.sort(function (a, b) {
+            return b - a; // 降幂排序
+        });
+
+        console.log(arr2);
+        console.log("============================")
+
+        // 底层原理
+        var arr3 = [4, 5, 1, 13, 2, 7, 6];
+
+        Array.prototype.myReverse = function (fn) {
+            // 外循环控制轮数(最后一轮不用再比较，已经排好了)
+            for (var i = 0; i < this.length - 1; i++) {
+                // 内循环控制次数（自己不用和自己比较，次数-1）
+                // 每比较一轮可以少比较一次
+                var bool = true;
+                for (var j = 0; j < this.length - 1 - i; j++) {
+                    // 返回a-b:升幂排序，
+                    // 返回b-a:降幂排序
+                    if (fn(this[j] , this[j + 1])>0) {
+                        var temp = this[j];
+                        this[j] = this[j + 1];
+                        this[j + 1] = temp;
+                        bool = false;
+                    }
+                }
+                // 如果完全排好的话，就不用在继续循环轮数了
+                if (bool) {
+                    break;
+                }
+            }
+            return this;
+        }
+        console.log(arr3.myReverse(function(a,b){
+            return b-a;
+        }));
+    </script>
+</body>
+
+</html>
