@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 可以指定位置删除添加
+        // 数组.splice(开始索引，删除几个，替换内容1,替换内容2)
+        // 指定位置添加
+        // 删除0个，并在当前位置（索引为2的位置）添加
+        let arr = [1,2,3,4,5,6,"a","b","c"];
+        arr.splice(2,0,"aaa"); 
+        console.log(arr); // [1,2,"aaa",3,4,5,6,"a","b","c"]
+
+        // 从索引值为3截取到最后(删除)
+        // arr.splice(3);
+        // console.log(arr);
+        // (删除指定个数)从索引值为1的开始删除2个
+        // arr.splice(1,2);
+        // console.log(arr);
+        // 替换,(删除指定数并替换)
+        // arr.splice(3,3,"aaa","bbb","ccc");
+        // console.log(arr);
+    </script>
+</body>
+</html>

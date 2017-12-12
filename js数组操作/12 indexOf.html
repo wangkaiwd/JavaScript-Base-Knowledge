@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数组.indexOf(元素) 给元素，查索引（从前往后）
+        // 数组.lastIndexOf(元素) 给元素，查索引（从后往前）
+        let arr = ["a", "b", "c", "d", "c", "b", "b"];
+        // console.log(arr.indexOf("b")); // 1 找到后立刻返回，不再继续查找
+        // console.log(arr.lastIndexOf("b")); // 6 找到后立刻返回，不再继续查找
+        // console.log(arr.indexOf("xxx")); // -1
+
+        // 原型上重写indexOf方法
+        Array.prototype.myIndexOf = function (str) {
+            this.forEach(function(ele,index){
+                if(ele===str){
+                    // forEach只是单纯的遍历，不能返回内容，没有返回值，即为undefined
+                    return index;
+                }
+            });
+            return -1;
+        }
+        let index = arr.myIndexOf("b");
+        console.log(index); // -1
+
+
+        // for(let i=0;i<this.length-1;i++){
+        //     if(this[i]===str){
+        //         // return 切断代码（后面的所有代码都会切断，包括循环和循环后的代码）：
+        //         //  1.循环不再执行
+        //         //  2.循环外的return -1也不会再执行
+        //         return i; 
+        //     }
+        // }
+        // return -1;
+    </script>
+</body>
+
+</html>
