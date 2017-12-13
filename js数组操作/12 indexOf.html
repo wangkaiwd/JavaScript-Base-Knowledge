@@ -19,27 +19,26 @@
 
         // 原型上重写indexOf方法
         Array.prototype.myIndexOf = function (str) {
-            this.forEach(function(ele,index){
-                if(ele===str){
-                    // forEach只是单纯的遍历，不能返回内容，没有返回值，即为undefined
-                    return index;
+            // 便利数组时如果需要返回值不能使用forEach()方法
+            // this.forEach(function(ele,index){
+            //     if(ele===str){
+            //         // forEach只是单纯的遍历，不能返回内容，没有返回值，即为undefined
+            //         return index;
+            //     }
+            // });
+            // return -1;
+            for(let i=0;i<this.length-1;i++){
+                if(this[i]===str){
+                    // return 切断代码（后面的所有代码都会切断，包括循环和循环后的代码）：
+                    //  1.循环不再执行
+                    //  2.循环外的return -1也不会再执行
+                    return i; 
                 }
-            });
+            }
             return -1;
         }
         let index = arr.myIndexOf("b");
         console.log(index); // -1
-
-
-        // for(let i=0;i<this.length-1;i++){
-        //     if(this[i]===str){
-        //         // return 切断代码（后面的所有代码都会切断，包括循环和循环后的代码）：
-        //         //  1.循环不再执行
-        //         //  2.循环外的return -1也不会再执行
-        //         return i; 
-        //     }
-        // }
-        // return -1;
     </script>
 </body>
 

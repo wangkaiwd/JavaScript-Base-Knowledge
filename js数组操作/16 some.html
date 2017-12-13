@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对数组中的每一项运行回调函数，如果该函数对某一项返回true,
+        // 贼some返回true
+        let arr = [111,222,333,444,555];
+        let bool = arr.some(function(ele,i,array){
+            return ele%3===0;
+        });
+        console.log(bool);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // reduce:依次处理数组的每个成员，最终累计为一个值
+        // reduce：从第一个成员到最后一个成员，
+        // reduceRight: 从最后一个成员到第一个成员
+        // 第一个参数：函数，函数接收以下四个参数
+        // 1.累积变量，默认为数组的第一个成员
+        // 2.当前变量，默认为数组的第二个成员
+        // 3.当前位置（从0开始）
+        // 4.原数组
+        // 前俩个参数为必须，后俩个可选
+        // let arr = [1,2,3,4,5];
+        // let result = arr.reduce(function(x,y){
+        //     console.log(x,y);
+        //     // 1，2
+        //     // 3，3
+        //     // 6，4
+        //     // 10，5
+        //     return x+y; // 将数组的每一项的累加和返回
+        // });
+        // console.log(result); // 15
+        
+        // 利用reduce方法，写数组求和方法
+        Array.prototype.mySum = function(){
+            return this.reduce(function(x,y){
+                // x累积变量，从数组的第一个成员开始
+                // y当前变量，从数组的第二个成员开始
+                return x+y;
+            });
+        }
+        let arr = [1,2,3];
+        let sum = arr.mySum();
+        console.log(sum);
+        
+    </script>
+</body>
+</html>

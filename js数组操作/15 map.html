@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [111,222,333,444,555];
+        // 对数组中每一项运行回调函数，返回该函数的结果组成的新数组
+        // return 什么数组中就有什么；对数组二次加工
+        let newArr = arr.map(function(ele,index,array){
+            if(index===2){
+                return ele*10;
+            }
+            return ele*100;
+        })
+        console.log(newArr);
+    </script>
+</body>
+</html>
