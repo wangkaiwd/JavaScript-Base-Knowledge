@@ -8,37 +8,78 @@
 </head>
 <body>
     <script>
-        // reduce:依次处理数组的每个成员，最终累计为一个值
+        // 依次处理数组的每个成员，最终累计为一个值
         // reduce：从第一个成员到最后一个成员，
         // reduceRight: 从最后一个成员到第一个成员
         // 第一个参数：函数，函数接收以下四个参数
-        // 1.累积变量，默认为数组的第一个成员
-        // 2.当前变量，默认为数组的第二个成员
+        // 1.累积变量，默认为数组的第一个成员,之后赋值为返回值
+        // 2.当前变量，默认为数组的第二个成员,
+         //  如果给定累计变量的初始值，当前变量默认为第一个数组成员
         // 3.当前位置（从0开始）
         // 4.原数组
         // 前俩个参数为必须，后俩个可选
         // let arr = [1,2,3,4,5];
         // let result = arr.reduce(function(x,y){
         //     console.log(x,y);
-        //     // 1，2
-        //     // 3，3
-        //     // 6，4
-        //     // 10，5
-        //     return x+y; // 将数组的每一项的累加和返回
+        //     // 将返回赋值给x，即x = x+y;继续进行循环，直到遍历完所有
+        //     // 数组成员，返回最后一轮计算后的x
+        //     return x+y; 
         // });
-        // console.log(result); // 15
+        // console.log(result); 
+        // 1，2
+        // 3，3
+        // 6，4
+        // 10，5
+        // 15
         
         // 利用reduce方法，写数组求和方法
-        Array.prototype.mySum = function(){
-            return this.reduce(function(x,y){
-                // x累积变量，从数组的第一个成员开始
-                // y当前变量，从数组的第二个成员开始
-                return x+y;
-            });
+        // Array.prototype.mySum = function(){
+        //     // 要将计算结果返回
+        //     return this.reduce(function(x,y){
+        //         return x+y;
+        //     });
+        // }
+        // let arr = [1,2,3];
+        // let sum = arr.mySum();
+        // console.log(sum);
+        // 如果要对累积变量指定初值，可以把它放在reduce方法和reduceRight方法的第二个参数
+
+        // 这时，y是从数组的第一个成员开始遍历
+        // let arr = [1,2,3,4,5];
+        // let result = arr.reduce(function(x,y){
+        //     return x+y;
+        // },10)
+        // console.log(result);
+
+        // 第二个参数相当于射定了默认值，处理空数组时尤其有用
+        // function add(x,y) {
+        //     return x+y;
+        // }
+        // let result = [].reduce(add); 
+        // console.log(result); // 空数组会报错 
+        // Uncaught TypeError:Reduce of empty array with no initial value
+        // 指定累积变量的初始值
+        // let result1 = [].reduce(add,10);
+        // console.log(result1); // 10
+
+        function substract(prev,cur) {
+            return prev-cur;
         }
-        let arr = [1,2,3];
-        let sum = arr.mySum();
-        console.log(sum);
+        let result = [3,2,1].reduce(substract); 
+        let result1 = [3,2,1].reduceRight(substract); 
+        console.log(result); // 0
+        console.log(result1); // -4
+
+        // reduce方法依次处理每个元素，可以用来搜索某个元素
+        // 找出长度最长的数组元素
+        // function findLogest(entries){
+        //     return entries.reduce(function(logest,entry){
+        //         return logest.length>entry.length?logest:entry;
+        //     })
+        // }
+
+        // let result = findLogest(["aaa","bb","c","dddd"]);
+        // console.log(result); // dddd
         
     </script>
 </body>

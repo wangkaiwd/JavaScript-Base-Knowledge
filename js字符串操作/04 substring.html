@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = "123abc";
+        console.log(str.substring(-1)); // 打印所有
+        // 开始索引，结束索引，包左不包右
+        console.log(str.substring(0, 3)); // 123
+        console.log(str.substring(4, 3)); //智能调换  a (截取索引为3的第四个字符)
+        console.log(str.substring(5, 3)); //智能调换  ab (从索引为3的开始截取到第5个字符)
+    </script>
+</body>
+
+</html>

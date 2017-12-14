@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let s1 = "abc";
+        let s2 = new String("abc");
+        console.log(typeof s1); // string
+        console.log(typeof s2); // object
+        console.log(s2); // String{0:'a',1:'b',2:'c',length:3}
+        let num = 111;
+        num.bbb = 222;
+        console.log(num.bbb); // undefined
+        console.log(num.length); // undefined
+    </script>
+</body>
+</html>
