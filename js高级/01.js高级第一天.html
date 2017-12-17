@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            function Person(name,age) {
+                this.name = name;
+                this.age = age;
+            }
+            Person.prototype.eat = function () {
+                console.log("正在吃饭");
+            }
+            //实例化对象
+            var p1 = new Person("李白",18);
+            console.log(p1.constructor);//构造函数Person这个函数整体
+            p1.eat();//正在吃饭
+            //查找了2次：1.在构造函数Person里查找 2.在构造函数的原型上查找
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

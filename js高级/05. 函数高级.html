@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn() {
+        //     var a = 15;
+        //     return function () {
+        //         console.log(++a);
+        //     }
+        // }
+        // // var result = fn();
+        // // result();
+        // // fn()();
+        // // fn()();
+        // var result = fn();
+        // result();
+        // result();
+        // result();
+        
+        // 函数里的变量在函数执行完毕之后就会被销毁
+        // 全局的变量不会被销毁，只有将此窗口关闭，全局才会被销毁
+
+        // 闭包：函数内部嵌套函数
+        // 内层函数引用外层函数的变量或者参数
+        // 使该变量或者参数常驻内存，避免销毁
+        // 存钱
+        // function bank(money){
+        //     // 局部变量money外部无法访问
+        //     return function(cost){
+        //         if(money<0 || money-cost<0){
+        //             return "余额不足，请进行充值";
+        //         }
+        //         else {
+        //             money = money-cost;
+        //             return money;
+        //         }
+        //     }
+        // }
+        // var result = bank(1000);
+        // console.log(result(500));
+        // console.log(result(600));
+        // // 阶乘
+        // function getJC(n) {
+        //     if(n==1) {
+        //         return 1;
+        //     }
+        //     return n*getJC(n-1);
+        // }
+        // console.log(getJC(5));
+        // 斐波那契数列
+function getFBNQ(n){
+    if(n<1 || n!=parseInt(n)){
+        return "请输入大于0的整数";
+    }
+    else if(n==1 || n==2) {
+        return 1;
+    }
+    return getFBNQ(n-1) + getFBNQ(n-2);
+}
+console.log(getFBNQ(12));
+    </script>
+</body>
+
+</html>

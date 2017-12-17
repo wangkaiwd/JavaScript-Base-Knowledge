@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var arr = [1,2,4,5,6];
+            var arr1 = [1,2,3,4,5,6];
+            var arr2 = [1,4,7,4,3,5,7];
+            //1.mypush    mypop
+//            console.log(arr.push(7,8));//返回值数组的长度
+//            console.log(arr);//会改变原数组
+//            Array.prototype.mypush = function () {
+//                for(var i=0;i<arguments.length;i++){
+//                    this[this.length] = arguments[i];
+//                }
+//                return this.length;
+//            }
+//            console.log(arr.mypush(7,8));
+//            console.log(arr);
+
+            Array.prototype.mypop = function () {
+                var temp = this[this.length-1];
+                this.length = this.length-1;
+                return temp;
+            }
+            console.log(arr.mypop());
+            console.log(arr);
+            //2.norepeat//成功去重
+//            Array.prototype.norepeat = function () {
+//                var newArr = [];
+//                for(var i=0;i<this.length;i++){
+//                    if(newArr.indexOf(this[i])==-1){
+//                        newArr.push(this[i]);
+//                    }
+//                }
+//                return newArr;
+//            }
+
+            Array.prototype.norepeat = function () {//这样定义的函数不会进行声明提升
+                var newArr = [];
+                for(var i=0;i<this.length;i++){
+                    bool = true;
+                    for(var j=0;j<newArr.length;j++){
+                        if(this[i]==newArr[j]){
+                            bool = false;
+                        }
+                    }
+                    if(bool){
+                        newArr[newArr.length] = this[i];
+                    }
+                }
+                return newArr;
+            }
+            console.log(arr2.norepeat());
+            //3.myindexOf
+
+            //4.用正则模拟trim
+            //5.myslice
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

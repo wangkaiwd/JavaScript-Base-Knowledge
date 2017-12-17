@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            width: 150px;
+            margin: 20px 20px;
+        }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            width: 150px;
+            background-color: skyblue;
+            text-align: center;
+            height: 150px;
+            display: none;
+            line-height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="按钮1"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <ul>
+        <li style="display: block;">内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+    </ul>
+</div>
+<script>
+    (function(window){
+        function Tab(id){
+            this.obj = document.getElementById(id);
+            this.inpArr = this.obj.getElementsByTagName("input");
+            this.liArr = this.obj.getElementsByTagName("li"); 
+        }
+        // 
+        Tab.prototype.init = function(){
+            for(var i=0;i<this.inpArr.length;i++){
+                this.inpArr[i].index = i;
+                var that = this;
+                this.inpArr[i].onclick = function(){
+                    that.fnClick(this.index);
+                }
+            }
+        }
+        Tab.prototype.fnClick = function(index){
+            for(var i=0;i<this.inpArr.length;i++){
+                this.inpArr[i].style.backgroundColor = "";
+                this.liArr[i].style.display = "none";
+            }
+            this.inpArr[index].style.backgrounColor = "red";
+            this.liArr[index].style.display = "block";
+        }
+        window.Tab = Tab;
+    })(window)
+</script>
+</body>
+</html>
