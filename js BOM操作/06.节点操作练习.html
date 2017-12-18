@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节点删除，复制，创建</title>
+    <script>
+        window.onload = function(){
+            var ul = document.getElementsByTagName("ul")[0];
+            var btnArr = document.getElementsByTagName("button");
+            var li2 = document.getElementById("li2");
+            btnArr[0].onclick = function(){
+                var newli = document.createElement("li");
+                newli.innerHTML = "我是新创建的li";
+                newli.className = "newli";
+                console.log(newli);
+                ul.insertBefore(newli,li2);//将新创建的li添加到li2的前面
+            }
+            btnArr[1].onclick = function(){
+                for(var i=0;i<ul.children.length;i++){
+                    if(ul.children[i].className=="cloneli"){
+                        ul.removeChild(ul.children[i]);
+                    }
+                }
+            }
+            btnArr[2].onclick = function(){
+                var cloneli = li2.cloneNode(true);
+                cloneli.className = "cloneli";
+                ul.appendChild(cloneli);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <button>创建</button>
+    <button>删除</button>
+    <button>复制</button>
+    <ul>
+        <li>1</li>
+        <li id="li2">2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,222 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen li {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            float: left;
+        }
+
+        .screen ul {
+            position: absolute;
+            left: 0;
+            top: 0px;
+            width: 3000px;
+        }
+
+        .all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .all ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .all ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: none;
+        }
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--外部盒子-->
+    <div class="all" id='all'>
+        <!--内部盒子-->
+        <div class="screen" id="screen">
+            <!--图片们-->
+            <ul id="ul">
+                <li><img src="images/1.jpg" width="500" height="200"/></li>
+                <li><img src="images/2.jpg" width="500" height="200"/></li>
+                <li><img src="images/3.jpg" width="500" height="200"/></li>
+                <li><img src="images/4.jpg" width="500" height="200"/></li>
+                <li><img src="images/5.jpg" width="500" height="200"/></li>
+            </ul>
+            <!--小方块-->
+            <ol id="ol">
+
+            </ol>
+            <!--小三角-->
+            <div id="arr">
+                <span id="left"><</span>
+                <span id="right">></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var screen = document.getElementById("screen");
+        var ul = document.getElementById("ul");
+        var ulliArr = ul.getElementsByTagName("li");
+        var ol = document.getElementById("ol");
+        var arr = document.getElementById("arr");
+        var left = document.getElementById("left");
+        var right = document.getElementById("right");
+        var square = 0;//小方块的索引
+        var key = 0;//ul中图片的索引
+        //根据ul中图片的数量创建小方块
+        for(var i=0;i<ulliArr.length;i++){
+            //olli是全局变量，但因为每次都是同一个名字，发生了变量覆盖
+            var olli = document.createElement("li");
+            olli.innerHTML = i+1;
+            ol.appendChild(olli);
+        }
+        //复制ul中的第一张图片移动到最末尾
+        var newli = ulliArr[0].cloneNode(true);
+        ul.appendChild(newli);
+        //点击对应的olli，小方块亮起来，ul移动到对应位置
+        var olliArr = ol.getElementsByTagName("li");
+        olliArr[0].className = "current";
+        for(var i=0;i<olliArr.length;i++){
+            olliArr[i].index = i;
+            olliArr[i].onmouseover = function(){
+                for(var j=0;j<olliArr.length;j++){
+                    olliArr[j].className="";
+                }
+                this.className="current";
+                var s = -ulliArr[0].offsetWidth*this.index;
+                animate(ul,s);
+                //同步索引值
+                square = this.index;
+                key = this.index;
+            }
+        }
+        //点击右箭头
+        right.onclick = autoPlay;
+        //点击左箭头
+        left.onclick = function(){
+            square--;
+            if(square<0){
+                square = 4;
+            }
+            for(var i=0;i<olliArr.length;i++){
+                olliArr[i].className = "";
+            }
+            olliArr[square].className = "current";
+            key--;
+            if(key<0){
+                ul.style.left = -(ul.children.length-1)*ulliArr[0].offsetWidth+"px";
+                key = 4;
+            }
+            var s = -key*ulliArr[0].offsetWidth;
+            animate(ul,s);
+        }
+        //自动轮播
+        var timer = null;
+        timer = setInterval(autoPlay,1500)
+        screen.onmouseenter = function(){
+            clearInterval(timer);
+            arr.style.display = "block";
+        }
+        screen.onmouseleave = function(){
+            timer = setInterval(autoPlay,1500);
+        }
+
+
+
+        function animate(ele,target){
+            clearInterval(ele.timer);
+            ele.timer = setInterval(function(){
+                var step = (target-ele.offsetLeft)>0?10:-10;
+                ele.style.left = ele.offsetLeft+step+"px";
+                if(Math.abs(target-ele.offsetLeft)<=Math.abs(step)){
+                    ele.style.left = target+"px";
+                    clearInterval(ele.timer);
+                }
+            },20);
+        }
+
+        function autoPlay(){
+            square++;
+            if(square>4){
+                square = 0;
+            }
+            for(var i=0;i<olliArr.length;i++){
+                olliArr[i].className = "";
+            }
+            olliArr[square].className = "current";
+            key++;
+            if(key>5){
+                ul.style.left = 0;
+                key = 1;
+            }
+            var s = -key*ulliArr[0].offsetWidth;
+            animate(ul,s);
+        }
+    </script>
+</body>
+</html>
+

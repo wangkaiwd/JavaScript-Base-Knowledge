@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09微博发布</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 600px;
+            padding: 10px;
+            border: 1px dotted #ccc;
+            margin: 100px auto;
+        }
+
+        textarea {
+            width: 460px;
+            height: 234px;
+            resize: none;
+            font-size: 22px;
+        }
+
+        label {
+            font-size: 22px;
+        }
+
+        button {
+            width: 60px;
+            height: 30px;
+            font-size: 18px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            padding: 10px 70px;
+        }
+
+        li {
+            font: 500 20px/28px "simsun";
+            border-bottom: 1px dashed #ccc;
+        }
+
+        li a {
+            float: right;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <label for="txt">请输入</label>
+        <textarea id="txt" cols="30" rows="10"></textarea>
+        <button>发布</button>
+        <ul>
+            <!--<li>111 <a href="#">删除</a></li>-->
+        </ul>
+    </div>
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var txt = document.getElementsByTagName("textarea")[0];
+        var ul = document.getElementsByTagName("ul")[0];
+        btn.onclick = function(){
+            if(txt.value.trim()==""){//内容不能是空格或者是空
+                return alert("内容不能为空或者空格");
+            }
+            var li = document.createElement("li");
+            li.innerHTML = txt.value+"<a href='#'>删除</a>";
+            if(ul.children.length==0){
+                ul.appendChild(li);
+            }
+            else{
+                ul.insertBefore(li,ul.children[0]);
+            }
+            //添加完成后置空
+            txt.value="";
+            var a = li.getElementsByTagName("a")[0];
+            a.onclick = function(){
+                ul.removeChild(li);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

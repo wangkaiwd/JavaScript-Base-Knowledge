@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // timestamp	页面加载完毕到事件被触动的时间（毫秒值）
+        // bubbles		是否支持冒泡
+        // button  	左中右：0,1,2
+        // pageX/pageY	触动事件时，鼠标位于整个页面的坐标；ie678不支持
+        // target		事件引发者
+        // srcElement	事件引发者(兼容ie678)
+        // type		事件名
+        // keyCode		键盘对应的Unicode编码值（只有大写）
+        // event.stopPropagation(); 取消事件传播
+        // event.cancelBubble=true; ie678取消冒泡
+        // function delBubble(e){
+        //     var e = event || window.event;
+        //     if(e.stopPropagation){
+        //         e.stopPropagation();
+        //     }
+        //     else {
+        //         e.cancelBubble = true;
+        //     }
+        // }
+        // 总结：
+        //     1.事件绑定容易覆盖，所以有了事件监听，但是兼容性不好，我们可以做一下封装
+        //     2.事件对象event兼容性不好，里面有很多属性和方法，例如：keyCode,pageX/Y,target/srcElement
+        //     3.事件传播分为3个阶段：捕获-目标-冒泡，可以用eventPhase查看当前处于哪个阶段
+        //     事件冒泡很少用，捕获几乎没用过，事件委托就是用冒泡实现的
+        //     大部分时间，我都在取消冒泡
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

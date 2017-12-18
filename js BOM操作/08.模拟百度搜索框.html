@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 500px;
+            margin: 200px auto;
+        }
+
+        input {
+            width: 380px;
+            height: 34px;
+            outline-style: none;
+            padding-left: 10px;
+            font-size: 18px;
+            float: left;
+        }
+
+        button {
+            width: 90px;
+            height: 38px;
+            float: right;
+        }
+
+        ul {
+            border: 1px dashed red;
+            border-top: 0;
+            float: left;
+            width: 372px;
+            padding: 10px;
+        }
+
+        ul li {
+            cursor: help;
+            font: 500 22px/28px "simsun";
+        }
+
+        ul li:hover {
+            background-color: red;
+        }
+    </style>
+    <script>
+        //写带码一定要先检查入口函数
+        window.onload = function () {
+            // 模拟数据库的数据
+            var arr = ["a", "aa", "aaa", "ab", "abc", "abcd", "abcde", "abcdef", "abcdefg", "bb", "bbb", "bbbc",
+                "bbbcd"
+            ];
+            var inp = document.getElementsByTagName("input")[0];
+            var box = document.getElementsByClassName("box")[0];
+            inp.onkeyup = function () {
+                //将数组中以输入字符为开头的显示
+                var newArr = [];
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].indexOf(inp.value) == 0 && inp.value!="") { 
+                        //以输入内容开头
+                        newArr.push(arr[i]);
+                    }
+                }
+                //如果没有在数据库中查询到信息，不会进行显示
+                //newArr.length==0;//1.没输入内容(此时尚未触发事件，不用考虑)  2.将内容删空 3.没有搜索到内容
+                //box.children.length==3//1.搜索到内容 2.将内容删空
+                if(box.children.length==3){//上一次搜索到了内容
+                    //将内容删空
+                    if(box.children.length==3 && newArr.length==0){
+                        box.removeChild(box.children[2]);
+                        return;
+                    }
+                    //上一次没有搜索到内容，也要会添加一个ul，将ul删除
+                    box.removeChild(box.children[2]);//这里的ul当再次触发事件的时候不存在
+                }
+                //如果查到信息，将信息显示
+                var ul = document.createElement("ul");
+                box.appendChild(ul);
+                for(var i=0;i<newArr.length;i++){
+                    var li = document.createElement("li");
+                    li.innerHTML = newArr[i];
+                    console.log(li);
+                    ul.appendChild(li);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="box">
+        <input type="text" />
+        <button>搜索</button>
+        <!--<ul>-->
+
+        <!--</ul>-->
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            img {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+            }
+    
+            div {
+                position: absolute;
+                top: 40px;
+                left: 20px;
+                width: 200px;
+                height: 200px;
+                background-color: red;
+                z-index: 99;
+            }
+    
+            button {
+                position: absolute;
+                top: 20px;
+                left: 280px;
+                width: 80px;
+                height: 40px;
+                font-size: 20px;
+            }
+        </style>
+        <script>
+            window.onload = function(){
+                var btn = document.getElementsByTagName("button")[0];
+                var img = document.getElementsByTagName("img")[0];
+                var box = document.getElementsByTagName("div")[0];
+                btn.addEventListener("click",function(){
+                    box.style.width = "800px";
+                    box.style.height = "600px";
+                    box.style.left = "30px";
+                    box.style.top = "100px";
+                    box.style.zIndex = "-1";
+                    img.style.width = "794px";
+                    img.style.height = "594px";
+                    img.style.left = "33px";
+                    img.style.top = "103px";
+                })
+            }
+        
+            
+        </script>
+    
+    </head>
+    
+    <body>
+        <button>走你...</button>
+        <img src="image/2.jpg" width="200" alt="" />
+        <div class="box"></div>
+    
+    </body>
+    
+    </html>

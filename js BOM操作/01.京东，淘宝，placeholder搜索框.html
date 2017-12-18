@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input {
+            width: 300px;
+            height: 30px;
+            padding-left: 10px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        label {
+            position: absolute;
+            top: 75px;
+            left: 68px;
+            font-size: 20px;
+            cursor: text;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var inpArr = document.getElementsByTagName("input");
+            var label = document.getElementsByTagName("label")[0];
+            inpArr[0].addEventListener("focus",function(){
+                if(this.value=="乒乓球"){
+                    this.value="";
+                }
+            })
+            inpArr[0].onblur = function(){
+                if(this.value==""){
+                    this.value="乒乓球";
+                }
+            }
+            inpArr[1].onkeydown = function(){
+                if(label.innerHTML=="羽毛球"){
+                    label.innerHTML="";
+                }
+            }
+            inpArr[1].addEventListener("blur",function(){
+                if(this.value==""){
+                    label.innerHTML="羽毛球";
+                }
+            })
+
+        }
+    </script>
+</head>
+<body>
+    京东：<input type="text" value="乒乓球"/><br/>
+    淘宝：<label for="inp2">羽毛球</label><input id="inp2" type="text"/><br/>
+    <!-- 使用lable使表单更有利于用户体验 -->
+    placeholder: <input type="text" placeholder="橄榄球"/><br/>    
+</body>
+</html>
