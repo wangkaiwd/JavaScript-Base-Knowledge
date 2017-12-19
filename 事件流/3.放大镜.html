@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .big {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+
+        .mask {
+            width: 175px;
+            height: 175px;
+            background: rgba(255, 255, 0, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+
+        .small {
+            position: relative;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var small = document.getElementById("small");
+            var mask = document.getElementById("mask");
+            var big = document.getElementById("big");
+            var box = document.getElementById("box");
+            var bigImg = document.getElementById("big-img");
+            small.onmouseover = function () {
+                mask.style.display = "block";
+                big.style.display = "block";
+            }
+            small.onmouseout = function () {
+                mask.style.display = "none";
+                big.style.display = "none";
+            }
+            small.onmousemove = function (e) {
+                var e = event || window.event;
+                var pagex = e.pageX || e.clientX + scrollTop();
+                var pagey = e.pageY || e.clientY + scrollLeft();
+                //获取光标在盒子中的坐标
+                var x = pagex-box.offsetLeft;
+                var y = pagey-box.offsetTop;
+                var xx = x-mask.offsetWidth/2;
+                if(xx<0){
+                    xx = 0;
+                }
+                if(xx>small.offsetWidth-mask.offsetWidth){
+                    xx = small.offsetWidth-mask.offsetWidth;
+                }
+                var yy = y-mask.offsetHeight/2;
+                if(yy<0){
+                    yy = 0;
+                }
+                if(yy>small.offsetHeight-mask.offsetHeight){
+                    yy = small.offsetHeight-mask.offsetHeight;
+                }
+                //比例：大图片的宽度:小盒子的宽度=大盒子走过的距离:小盒子走过的距离
+                var scale1 = bigImg.offsetWidth/small.offsetWidth;
+                var scale2 = bigImg.offsetHeight/small.offsetHeight;
+                mask.style.left = xx+"px";
+                bigImg.style.left = -scale1*xx+"px";
+                mask.style.top = yy+"px";
+                bigImg.style.top = -scale2*yy+"px";
+            }
+
+            function scrollTop() {
+                return window.pageYOffset || document.documentElement.scrollTop;
+            }
+
+            function scrollLeft() {
+                return window.pageXOffset || document.documentElement.scrollLeft;
+            }
+
+
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="box" id="box">
+        <!--左侧盒子-->
+        <div class="small" id="small">
+            <img src="images/001.jpg" alt="" />
+            <!--黄盒子-->
+            <div class="mask" id="mask"></div>
+        </div>
+        <!--右侧盒子-->
+        <div class="big" id="big">
+            <!--大图片-->
+            <img style="position: absolute;" id="big-img" src="images/0001.jpg" alt="" />
+        </div>
+    </div>
+
+
+</body>
+
+</html>

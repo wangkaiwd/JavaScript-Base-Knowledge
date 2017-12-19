@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+
+        .box {
+            width: 300px;
+            height: 420px;
+            position: relative;
+            margin: 100px auto;
+            overflow: hidden;
+            border: 1px solid red;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 260px;
+            padding: 10px;
+            text-align: center;
+            font: 500 20px/34px "simsun";
+            background-color: #61ff51;
+        }
+
+        .scroll-box {
+            width: 20px;
+            height: 420px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #bbb;
+        }
+
+        .bar {
+            position: absolute;
+            width: 20px;
+            background-color: red;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box = document.getElementById("box");
+            var content = document.getElementsByClassName("content")[0];
+            var scrollBox = document.getElementsByClassName("scroll-box")[0];
+            var bar = document.getElementsByClassName("bar")[0];
+            //通过比例计算除滚动条的高度
+            var barHeight = box.clientHeight/content.clientHeight*scrollBox.offsetHeight;
+            bar.style.height = barHeight+"px";
+            //取消浏览器默认行为
+            box.onmousedown = function(e){
+                var e = event || window.event;
+                e.preventDefault();
+
+            }
+            bar.onmousedown = function(e){
+                var e = event || window.event;
+                var pagey = e.pageY || e.clientY+scrollTop();
+                //计算鼠标在滚动条的纵坐标
+                var y = pagey-(bar.offsetTop+scrollBox.offsetTop);
+                document.onmousemove = function(e){
+                    var e = event || window.event;
+                    var pagey = e.pageY || e.clientY+scrollTop();
+                    //滚动条的位置
+                    var yy = pagey-y-scrollBox.offsetTop;
+                    if(yy<0){
+                        yy=0;
+                    }
+                    if(yy>scrollBox.offsetHeight-barHeight){
+                        yy=scrollBox.offsetHeight-barHeight;
+                    }
+                    bar.style.top = yy+"px"; 
+                    //计算文字移动的距离
+                    var scale = (content.offsetHeight-box.clientHeight)/(scrollBox.offsetHeight-bar.offsetHeight);
+                    content.style.top = -scale*yy+"px";
+                }
+            }
+            document.onmouseup = function(){
+                document.onmousemove = null;
+            }
+
+
+
+        }
+        function scrollTop(){
+            return window.pageYOffset || document.documentElement.scrollTop;
+        }
+    
+    
+    </script>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="content">
+            "---------start---------"<br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "------------------"
+            <br> 知人不必言尽，言尽则无友;
+            <br> 责人不必苛尽，苛尽则众远;
+            <br> 敬人不必卑尽，卑尽则少骨;
+            <br> "----------end---------"
+            <br>
+        </div>
+        <div class="scroll-box">
+            <div class="bar"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
